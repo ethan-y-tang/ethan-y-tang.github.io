@@ -9,7 +9,6 @@
   <link rel="icon" href="assets/img/classroom.png" type="image/png" />
   <title>Classroom</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Only one FingerprintJS script here -->
   <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js"></script>
 </head>
 <body>
@@ -128,12 +127,6 @@
     localStorage.setItem("visits", visits);
 
     const welcomeMsg = document.createElement("div");
-    welcomeMsg.textContent = visits === 1
-      ? "Welcome to the site for the first time!"
-      : `Welcome back! You've visited this site ${visits} times.`;
-
-    welcomeMsg.style.backgroundColor = "#333";
-    welcomeMsg.style.color = "#fff";
     welcomeMsg.style.padding = "10px 20px";
     welcomeMsg.style.borderRadius = "12px";
     welcomeMsg.style.fontSize = "18px";
@@ -147,39 +140,47 @@
     const navbar = document.querySelector(".navbar");
     navbar.insertAdjacentElement("afterend", welcomeMsg);
 
-    const vipList = [
-      "3ae9980a95ff6c9e88f41a996e303df8"
-    ];
-    
     (async () => {
+      // Initialize FingerprintJS
       const fp = await FingerprintJS.load();
+
+      // Get the visitor identifier
       const result = await fp.get();
       const visitorId = result.visitorId;
-    
+
+      // Special visitor IDs array (replace with your real VIP IDs)
+      const specialIDs = [
+        "your-special-id-1",
+        "your-special-id-2"
+      ];
+
+      // Update welcome message for special visitors
+      if (specialIDs.includes(visitorId)) {
+        welcomeMsg.textContent = "🔥 Welcome back, VIP! 🔥";
+        welcomeMsg.style.backgroundColor = "#ff4500"; // fire orange for VIP
+      } else {
+        welcomeMsg.textContent = visits === 1
+          ? "Welcome to the site for the first time!"
+          : `Welcome back! You've visited this site ${visits} times.`;
+        welcomeMsg.style.backgroundColor = "#333";
+        welcomeMsg.style.color = "#fff";
+      }
+
+      // Fetch IP and location data
       fetch("https://ipapi.co/json/")
         .then(res => res.json())
         .then(data => {
-          const isVIP = vipList.includes(visitorId);
-    
-          const message = isVIP
-            ? `
-    👑 VIP Visitor Alert!
-    🆔 FingerprintJS ID: ${visitorId}
-    Welcome back, VIP! You’re officially awesome.
-    💻 User Agent: ${navigator.userAgent}
-    📅 Time: ${new Date().toLocaleString()}
-    `
-            : `
-    📡 New visitor on your site!
-    🆔 FingerprintJS ID: ${visitorId}
-    🧠 IP: ${data.ip}
-    🌍 Location: ${data.city}, ${data.region}, ${data.country_name}
-    🕹 ISP: ${data.org}
-    💻 User Agent: ${navigator.userAgent}
-    📅 Time: ${new Date().toLocaleString()}
-    `;
-    
-          return fetch("https://discord.com/api/webhooks/yourWebhookURL", {
+          const message = `
+📡 New visitor on your site!
+🆔 FingerprintJS ID: ${visitorId}
+🧠 IP: ${data.ip}
+🌍 Location: ${data.city}, ${data.region}, ${data.country_name}
+🕹 ISP: ${data.org}
+💻 User Agent: ${navigator.userAgent}
+📅 Time: ${new Date().toLocaleString()}
+          `;
+
+          return fetch("https://discord.com/api/webhooks/1378856491087433728/hOE-7hyJYr9dlWrLRLlKB3oM5IovYzCFf_K5tLrvOi2hSaC2UnFBDEtr7VHIfPeCBsCJ", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
