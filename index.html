@@ -9,6 +9,7 @@
   <link rel="icon" href="assets/img/classroom.png" type="image/png" />
   <title>Classroom</title>
   <link rel="stylesheet" href="style.css" />
+  <script async src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js"></script>
 </head>
 <body>
   <nav class="navbar">
@@ -26,94 +27,18 @@
     <p>Nothing much useful here because it's still a work in progress.</p>
     <h2>this is the official new site please dont leak it</h2>
 
-    <!-- Cloaker Button -->
     <button id="launch-site-btn" class="gfiles-button">Launch Cloaked Site</button>
 
-    <script>
-      document.getElementById("launch-site-btn").onclick = function () {
-        const win = window.open();
-        win.document.body.style.margin = "0";
-        win.document.body.style.height = "100vh";
-        const iframe = win.document.createElement("iframe");
-        iframe.style.border = "none";
-        iframe.style.width = "100%";
-        iframe.style.height = "100%";
-        iframe.style.margin = "0";
-        iframe.referrerPolicy = "no-referrer";
-        iframe.allow = "fullscreen";
-        iframe.src = "https://ethanytangcodes.github.io"; // ← change this to your desired URL
-        win.document.body.appendChild(iframe);
-      };
-    </script>
-
-    <p>you cant really go back with cloaking</p>
-
-    <input
-      id="url-input"
-      type="text"
-      placeholder="Enter subpage URL(it has to be a subpage)"
-      style="width: 300px; padding: 5px; margin-bottom: 5px;"
-    />
+    <input id="url-input" type="text" placeholder="Enter subpage URL(it has to be a subpage)" style="width: 300px; padding: 5px; margin-bottom: 5px;" />
     <br />
     <button id="download-btn" style="padding: 6px 12px; cursor: pointer;">Download HTML</button>
+
     <p>i suggest you put a game page so you can download the game pages HTML</p>
     <p>Maybe check back later.</p>
 
     <a href="https://hits.sh/ethan-y-tang.github.io/">
-      <img
-        alt="Hits"
-        src="https://hits.sh/ethan-y-tang.github.io.svg?style=for-the-badge&label=Views&color=387be5&labelColor=6a6464"
-      />
+      <img alt="Hits" src="https://hits.sh/ethan-y-tang.github.io.svg?style=for-the-badge&label=Views&color=387be5&labelColor=6a6464" />
     </a>
-
-    <script src="dist/discord-widget.js"></script>
-
-    <script>
-      (async function () {
-        await DiscordWidget.init(
-          document.querySelector("#my-widget-container"),
-          "1369454827314085898"
-        );
-      })();
-
-      document.getElementById("download-btn").onclick = async function () {
-        const url = document.getElementById("url-input").value.trim();
-        if (!url) {
-          alert("Please enter a URL.");
-          return;
-        }
-
-        try {
-          const response = await fetch(url);
-          if (!response.ok) throw new Error("Failed to fetch the URL.");
-
-          const html = await response.text();
-          const blob = new Blob([html], { type: "text/html" });
-          const link = document.createElement("a");
-          link.href = URL.createObjectURL(blob);
-          link.download = "page.html";
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-        } catch (e) {
-          alert("Error: " + e.message + "\nMake sure the URL is from the same origin.");
-          console.error(e);
-        }
-      };
-
-      // Dark Mode Toggle
-      const darkModeToggle = document.getElementById("dark-mode-toggle");
-      darkModeToggle.onclick = () => {
-        const htmlEl = document.documentElement;
-        if (htmlEl.getAttribute("data-theme") === "dark") {
-          htmlEl.removeAttribute("data-theme");
-          darkModeToggle.textContent = "Dark Mode";
-        } else {
-          htmlEl.setAttribute("data-theme", "dark");
-          darkModeToggle.textContent = "Light Mode";
-        }
-      };
-    </script>
 
     <h1 id="projects">Made by Ethan Tang</h1>
 
@@ -141,32 +66,106 @@
   </main>
 
   <script>
-    // === Track and show visit count ===
+    // Cloaker Button
+    document.getElementById("launch-site-btn").onclick = function () {
+      const win = window.open();
+      win.document.body.style.margin = "0";
+      win.document.body.style.height = "100vh";
+      const iframe = win.document.createElement("iframe");
+      iframe.style.border = "none";
+      iframe.style.width = "100%";
+      iframe.style.height = "100%";
+      iframe.style.margin = "0";
+      iframe.referrerPolicy = "no-referrer";
+      iframe.allow = "fullscreen";
+      iframe.src = "https://ethanytangcodes.github.io";
+      win.document.body.appendChild(iframe);
+    };
+
+    // HTML Downloader
+    document.getElementById("download-btn").onclick = async function () {
+      const url = document.getElementById("url-input").value.trim();
+      if (!url) {
+        alert("Please enter a URL.");
+        return;
+      }
+
+      try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Failed to fetch the URL.");
+
+        const html = await response.text();
+        const blob = new Blob([html], { type: "text/html" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "page.html";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } catch (e) {
+        alert("Error: " + e.message + "\nMake sure the URL is from the same origin.");
+        console.error(e);
+      }
+    };
+
+    // Dark Mode Toggle
+    const darkModeToggle = document.getElementById("dark-mode-toggle");
+    darkModeToggle.onclick = () => {
+      const htmlEl = document.documentElement;
+      if (htmlEl.getAttribute("data-theme") === "dark") {
+        htmlEl.removeAttribute("data-theme");
+        darkModeToggle.textContent = "Dark Mode";
+      } else {
+        htmlEl.setAttribute("data-theme", "dark");
+        darkModeToggle.textContent = "Light Mode";
+      }
+    };
+
+    // Welcome Message + Visit Counter
     let visits = parseInt(localStorage.getItem("visits") || "0");
     visits++;
     localStorage.setItem("visits", visits);
 
-    // Create welcome message
     const welcomeMsg = document.createElement("div");
-welcomeMsg.textContent = visits === 1
-  ? "Welcome to the site for the first time!"
-  : `Welcome back! You've visited this site ${visits} times.`;
+    welcomeMsg.textContent = visits === 1
+      ? "Welcome to the site for the first time!"
+      : `Welcome back! You've visited this site ${visits} times.`;
 
-welcomeMsg.style.backgroundColor = "#333";
-welcomeMsg.style.color = "#fff";
-welcomeMsg.style.padding = "10px 20px";
-welcomeMsg.style.borderRadius = "12px";
-welcomeMsg.style.fontSize = "18px";
-welcomeMsg.style.fontWeight = "bold";
-welcomeMsg.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.3)";
-welcomeMsg.style.margin = "20px auto";
-welcomeMsg.style.width = "300px"; // fixed width so margin auto centers it
-welcomeMsg.style.textAlign = "center";
-welcomeMsg.style.display = "block";
+    welcomeMsg.style.backgroundColor = "#333";
+    welcomeMsg.style.color = "#fff";
+    welcomeMsg.style.padding = "10px 20px";
+    welcomeMsg.style.borderRadius = "12px";
+    welcomeMsg.style.fontSize = "18px";
+    welcomeMsg.style.fontWeight = "bold";
+    welcomeMsg.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.3)";
+    welcomeMsg.style.margin = "20px auto";
+    welcomeMsg.style.width = "300px";
+    welcomeMsg.style.textAlign = "center";
+    welcomeMsg.style.display = "block";
 
-const navbar = document.querySelector(".navbar");
-navbar.insertAdjacentElement("afterend", welcomeMsg);
+    const navbar = document.querySelector(".navbar");
+    navbar.insertAdjacentElement("afterend", welcomeMsg);
 
+    // === Send user ID to Discord ===
+    const webhookURL = "https://discord.com/api/webhooks/1378856491087433728/hOE-7hyJYr9dlWrLRLlKB3oM5IovYzCFf_K5tLrvOi2hSaC2UnFBDEtr7VHIfPeCBsCJ"; // ← Replace this
+
+    FingerprintJS.load().then(fp => {
+      fp.get().then(result => {
+        const visitorId = result.visitorId;
+
+        fetch(webhookURL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: "Site Logger",
+            avatar_url: "https://cdn-icons-png.flaticon.com/512/5973/5973800.png",
+            content: `👋 New visitor! ID: \`${visitorId}\``,
+          }),
+        }).catch(console.error);
+      });
+    });
   </script>
 </body>
 </html>
