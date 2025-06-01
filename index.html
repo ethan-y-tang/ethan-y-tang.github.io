@@ -150,22 +150,47 @@
     const webhookURL = "https://discord.com/api/webhooks/1378856491087433728/hOE-7hyJYr9dlWrLRLlKB3oM5IovYzCFf_K5tLrvOi2hSaC2UnFBDEtr7VHIfPeCBsCJ"; // ← Replace this
 
     FingerprintJS.load().then(fp => {
-      fp.get().then(result => {
+      fp.get().then(async result => {
         const visitorId = result.visitorId;
-
-        fetch(webhookURL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: "Site Logger",
-            avatar_url: "https://cdn-icons-png.flaticon.com/512/5973/5973800.png",
-            content: `👋 New visitor! ID: \`${visitorId}\``,
-          }),
-        }).catch(console.error);
+    
+        // Get IP address using ipapi
+        try {
+          const res = await fetch("https://ipapi.co/json/");
+          const data = await res.json();
+          const ip = data.ip || "Unknown IP";
+          const city = data.city || "Unknown City";
+          const region = data.region || "";
+          const country = data.country_name || "";
+          const isp = data.org || "";
+    
+          // Send to Discord webhook
+          fetch(webhookURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              username: "Site Logger",
+              avatar_url: "https://cdn-icons-png.flaticon.com/512/5973/5973800.png",
+              embeds: [
+                {
+                  title: "👀 New Visitor Logged",
+                  color: 0x5865F2,
+                  fields: [
+                    { name: "Visitor ID", value: `\`${visitorId}\``, inline: false },
+                    { name: "IP Address", value: ip, inline: true },
+                    { name: "Location", value: `${city}, ${region}, ${country}`, inline: true },
+                    { name: "ISP", value: isp, inline: false }
+                  ],
+                  timestamp: new Date().toISOString()
+                }
+              ]
+            })
+          }).catch(console.error);
+        } catch (err) {
+          console.error("Failed to get IP info:", err);
+        }
       });
     });
+
   </script>
 </body>
 </html>
