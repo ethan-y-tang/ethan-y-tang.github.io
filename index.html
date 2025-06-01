@@ -43,6 +43,34 @@
         win.document.body.appendChild(iframe);
       };
     </script>
+    <script>
+      // === Track and show visit count ===
+      let visits = parseInt(localStorage.getItem("visits") || "0");
+      visits++;
+      localStorage.setItem("visits", visits);
+    
+      // Create welcome message
+      const welcomeMsg = document.createElement("div");
+      welcomeMsg.textContent = visits === 1
+        ? " Welcome to the site for the first time!"
+        : ` Welcome back! You've visited this site ${visits} times.`;
+    
+      // Style the message
+      welcomeMsg.style.backgroundColor = "#333";
+      welcomeMsg.style.color = "#fff";
+      welcomeMsg.style.padding = "10px 20px";
+      welcomeMsg.style.borderRadius = "12px";
+      welcomeMsg.style.fontSize = "18px";
+      welcomeMsg.style.fontWeight = "bold";
+      welcomeMsg.style.margin = "30px auto";
+      welcomeMsg.style.width = "fit-content";
+      welcomeMsg.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.3)";
+      welcomeMsg.style.textAlign = "center";
+    
+      // Show it at the top of the page
+      document.body.insertBefore(welcomeMsg, document.body.firstChild);
+    </script>
+
 
     <p>you cant really go back with cloaking</p>
 
@@ -112,6 +140,7 @@
         }
       };
     </script>
+    
 
     <h1 id="projects">Made by Ethan Tang</h1>
 
