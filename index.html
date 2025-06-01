@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,7 +17,7 @@
     <a href="/chat.html">Chat</a>
     <a href="/info.html">Info</a>
     <a href="/log.html">Log</a>
-        <button id="dark-mode-toggle" class="gfiles-button" style="margin-left: 20px;">Dark Mode</button>
+    <button id="dark-mode-toggle" class="gfiles-button" style="margin-left: 20px;">Dark Mode</button>
   </nav>
 
   <main>
@@ -43,34 +45,6 @@
         win.document.body.appendChild(iframe);
       };
     </script>
-    <script>
-      // === Track and show visit count ===
-      let visits = parseInt(localStorage.getItem("visits") || "0");
-      visits++;
-      localStorage.setItem("visits", visits);
-    
-      // Create welcome message
-      const welcomeMsg = document.createElement("div");
-      welcomeMsg.textContent = visits === 1
-        ? " Welcome to the site for the first time!"
-        : ` Welcome back! You've visited this site ${visits} times.`;
-    
-      // Style the message
-      welcomeMsg.style.backgroundColor = "#333";
-      welcomeMsg.style.color = "#fff";
-      welcomeMsg.style.padding = "10px 20px";
-      welcomeMsg.style.borderRadius = "12px";
-      welcomeMsg.style.fontSize = "18px";
-      welcomeMsg.style.fontWeight = "bold";
-      welcomeMsg.style.margin = "100px";
-      welcomeMsg.style.width = "fit-content";
-      welcomeMsg.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.3)";
-      welcomeMsg.style.textAlign = "center";
-    
-      // Show it at the top of the page
-      document.body.insertBefore(welcomeMsg, document.body.firstChild);
-    </script>
-
 
     <p>you cant really go back with cloaking</p>
 
@@ -140,7 +114,6 @@
         }
       };
     </script>
-    
 
     <h1 id="projects">Made by Ethan Tang</h1>
 
@@ -166,11 +139,33 @@
       <img src="assets/img/secret.png" alt="Easter Egg" class="secret-image" />
     </a>
   </main>
-  <script>
-    const welcomeMsg = document.createElement("p");
-    welcomeMsg.textContent = "Welcome back! You’ve visited blank times.";
-    welcomeMsg.style.margin = "20px"; // spacing
 
+  <script>
+    // === Track and show visit count ===
+    let visits = parseInt(localStorage.getItem("visits") || "0");
+    visits++;
+    localStorage.setItem("visits", visits);
+
+    // Create welcome message
+    const welcomeMsg = document.createElement("div");
+    welcomeMsg.textContent = visits === 1
+      ? "Welcome to the site for the first time!"
+      : `Welcome back! You've visited this site ${visits} times.`;
+
+    // Style the message
+    welcomeMsg.style.backgroundColor = "#333";
+    welcomeMsg.style.color = "#fff";
+    welcomeMsg.style.padding = "10px 20px";
+    welcomeMsg.style.borderRadius = "12px";
+    welcomeMsg.style.fontSize = "18px";
+    welcomeMsg.style.fontWeight = "bold";
+    welcomeMsg.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.3)";
+    welcomeMsg.style.margin = "20px auto";
+    welcomeMsg.style.width = "fit-content";
+    welcomeMsg.style.textAlign = "center";
+    welcomeMsg.style.display = "block";
+
+    // Insert after navbar
     const navbar = document.querySelector(".navbar");
     navbar.insertAdjacentElement("afterend", welcomeMsg);
   </script>
