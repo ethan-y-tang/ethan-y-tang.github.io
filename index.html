@@ -148,26 +148,25 @@
 
     // Create welcome message
     const welcomeMsg = document.createElement("div");
-    welcomeMsg.textContent = visits === 1
-      ? "Welcome to the site for the first time!"
-      : `Welcome back! You've visited this site ${visits} times.`;
+welcomeMsg.textContent = visits === 1
+  ? "Welcome to the site for the first time!"
+  : `Welcome back! You've visited this site ${visits} times.`;
 
-    // Style the message
-    welcomeMsg.style.backgroundColor = "#333";
-    welcomeMsg.style.color = "#fff";
-    welcomeMsg.style.padding = "10px 20px";
-    welcomeMsg.style.borderRadius = "12px";
-    welcomeMsg.style.fontSize = "18px";
-    welcomeMsg.style.fontWeight = "bold";
-    welcomeMsg.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.3)";
-    welcomeMsg.style.margin = "20px auto";
-    welcomeMsg.style.width = "fit-content";
-    welcomeMsg.style.textAlign = "center";
-    welcomeMsg.style.display = "block";
+welcomeMsg.style.backgroundColor = "#333";
+welcomeMsg.style.color = "#fff";
+welcomeMsg.style.padding = "10px 20px";
+welcomeMsg.style.borderRadius = "12px";
+welcomeMsg.style.fontSize = "18px";
+welcomeMsg.style.fontWeight = "bold";
+welcomeMsg.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.3)";
+welcomeMsg.style.margin = "20px auto";
+welcomeMsg.style.width = "300px"; // fixed width so margin auto centers it
+welcomeMsg.style.textAlign = "center";
+welcomeMsg.style.display = "block";
 
-    // Insert after navbar
-    const navbar = document.querySelector(".navbar");
-    navbar.insertAdjacentElement("afterend", welcomeMsg);
+const navbar = document.querySelector(".navbar");
+navbar.insertAdjacentElement("afterend", welcomeMsg);
+
   </script>
 </body>
 </html>
