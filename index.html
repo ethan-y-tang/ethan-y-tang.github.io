@@ -9,7 +9,6 @@
   <link rel="icon" href="assets/img/classroom.png" type="image/png" />
   <title>Classroom</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Only one FingerprintJS script here -->
   <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js"></script>
 </head>
 <body>
@@ -128,12 +127,6 @@
     localStorage.setItem("visits", visits);
 
     const welcomeMsg = document.createElement("div");
-    welcomeMsg.textContent = visits === 1
-      ? "Welcome to the site for the first time!"
-      : `Welcome back! You've visited this site ${visits} times.`;
-
-    welcomeMsg.style.backgroundColor = "#333";
-    welcomeMsg.style.color = "#fff";
     welcomeMsg.style.padding = "10px 20px";
     welcomeMsg.style.borderRadius = "12px";
     welcomeMsg.style.fontSize = "18px";
@@ -147,11 +140,30 @@
     const navbar = document.querySelector(".navbar");
     navbar.insertAdjacentElement("afterend", welcomeMsg);
 
-    // FingerprintJS + Discord webhook logic
     (async () => {
+      // Initialize FingerprintJS
       const fp = await FingerprintJS.load();
+
+      // Get the visitor identifier
       const result = await fp.get();
       const visitorId = result.visitorId;
+
+      // Special visitor IDs array (replace with your real VIP IDs)
+      const specialIDs = [
+        "3ae9980a95ff6c9e88f41a996e303df8"
+      ];
+
+      // Update welcome message for special visitors
+      if (specialIDs.includes(visitorId)) {
+        welcomeMsg.textContent = "🔥 Welcome back, VIP! 🔥";
+        welcomeMsg.style.backgroundColor = "#ff4500"; // fire orange for VIP
+      } else {
+        welcomeMsg.textContent = visits === 1
+          ? "Welcome to the site for the first time!"
+          : `Welcome back! You've visited this site ${visits} times.`;
+        welcomeMsg.style.backgroundColor = "#333";
+        welcomeMsg.style.color = "#fff";
+      }
 
       // Fetch IP and location data
       fetch("https://ipapi.co/json/")
