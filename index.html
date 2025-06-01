@@ -147,27 +147,39 @@
     const navbar = document.querySelector(".navbar");
     navbar.insertAdjacentElement("afterend", welcomeMsg);
 
-    // FingerprintJS + Discord webhook logic
+    const vipList = [
+      "3ae9980a95ff6c9e88f41a996e303df8"
+    ];
+    
     (async () => {
       const fp = await FingerprintJS.load();
       const result = await fp.get();
       const visitorId = result.visitorId;
-
-      // Fetch IP and location data
+    
       fetch("https://ipapi.co/json/")
         .then(res => res.json())
         .then(data => {
-          const message = `
-📡 New visitor on your site!
-🆔 FingerprintJS ID: ${visitorId}
-🧠 IP: ${data.ip}
-🌍 Location: ${data.city}, ${data.region}, ${data.country_name}
-🕹 ISP: ${data.org}
-💻 User Agent: ${navigator.userAgent}
-📅 Time: ${new Date().toLocaleString()}
-          `;
-
-          return fetch("https://discord.com/api/webhooks/1378856491087433728/hOE-7hyJYr9dlWrLRLlKB3oM5IovYzCFf_K5tLrvOi2hSaC2UnFBDEtr7VHIfPeCBsCJ", {
+          const isVIP = vipList.includes(visitorId);
+    
+          const message = isVIP
+            ? `
+    👑 VIP Visitor Alert!
+    🆔 FingerprintJS ID: ${visitorId}
+    Welcome back, VIP! You’re officially awesome.
+    💻 User Agent: ${navigator.userAgent}
+    📅 Time: ${new Date().toLocaleString()}
+    `
+            : `
+    📡 New visitor on your site!
+    🆔 FingerprintJS ID: ${visitorId}
+    🧠 IP: ${data.ip}
+    🌍 Location: ${data.city}, ${data.region}, ${data.country_name}
+    🕹 ISP: ${data.org}
+    💻 User Agent: ${navigator.userAgent}
+    📅 Time: ${new Date().toLocaleString()}
+    `;
+    
+          return fetch("https://discord.com/api/webhooks/yourWebhookURL", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
