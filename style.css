@@ -38,6 +38,27 @@
   --keyboard-key-hover-bg: #444;
 }
 
+/* Dark mode component overrides */
+html[data-theme="dark"] .project-caption {
+  background: var(--nav-bg-color);
+  color: var(--text-color);
+}
+
+html[data-theme="dark"] .log-entry {
+  background-color: var(--nav-bg-color);
+  color: var(--text-color);
+  border-left-color: #66aaff;
+}
+
+html[data-theme="dark"] .project-card {
+  box-shadow: 0 4px 12px rgba(255,255,255,0.05);
+}
+
+html[data-theme="dark"] .project-card:hover {
+  box-shadow: 0 8px 20px rgba(255,255,255,0.1);
+}
+
+/* General Styles */
 body {
   font-family: 'Arial', sans-serif;
   color: var(--text-color);
@@ -46,7 +67,7 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  margin-top: 70px; /* Added to offset fixed navbar */
+  margin-top: 70px; /* offset fixed navbar */
 }
 
 /* Navbar styles */
@@ -167,15 +188,9 @@ p {
   transform: translateY(0);
 }
 
-
-
-
-
 .wide {
   width: 180px;
 }
-
-
 
 .secret-image {
   position: fixed;
@@ -191,6 +206,7 @@ p {
 .secret-image:hover {
   opacity: 1; /* Shows when the mouse hovers over it */
 }
+
 #update-log {
   display: flex;
   flex-direction: column;
@@ -203,6 +219,7 @@ p {
   padding: 15px 20px;
   border-left: 4px solid #007bff;
   border-radius: 8px;
+  color: var(--text-color);
 }
 
 .log-date {
@@ -213,12 +230,6 @@ p {
 
 .log-text {
   margin: 5px 0 0;
-}
-
-html[data-theme="dark"] .log-entry {
-  background-color: #1e1e1e;
-  color: white;
-  border-left-color: #66aaff;
 }
 
 .projects-container {
@@ -237,6 +248,7 @@ html[data-theme="dark"] .log-entry {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  color: var(--text-color);
 }
 
 .project-card:hover {
@@ -267,5 +279,3 @@ html[data-theme="dark"] .log-entry {
   text-align: center;
   background: var(--bg-color);
 }
-
-
