@@ -1,1 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="title" content="Classroom" />
+  <link rel="icon" href="assets/img/classroom.png" type="image/png" />
+  <title>Projects</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html">Home</a>
+    <a href="/aboutme.html">About Me</a>
+    <a href="/chat.html">Chat</a>
+    <a href="/info.html">Info</a>
+    <a href="/log.html">Log</a>
+    <a href="/projects.html">Projects</a>
+    <button id="dark-mode-toggle" class="gfiles-button" style="margin-left: 20px;">Dark Mode</button>
+  </nav>
 
+  <main>
+    <h1 class="fade-in-on-scroll">Projects</h1>
+    <p class="intro-text fade-in-on-scroll">finally made a projects page</p>
+  
+    <div class="projects-container">
+      <div class="project-card fade-in-on-scroll">
+        <div class="project-image">
+          <img src="assets/img/mlp.png" alt="MLP hack">
+        </div>
+        <p class="project-caption">MLP hack</p>
+      </div>
+  
+      <!-- cards here -->
+    </div>
+  </main>
+
+
+  <script>
+    // Dark mode toggle + save preference
+    const toggle = document.getElementById("dark-mode-toggle");
+    const html = document.documentElement;
+
+    if (localStorage.getItem("theme") === "dark") {
+      html.setAttribute("data-theme", "dark");
+      toggle.textContent = "Light Mode";
+    }
+
+    toggle.onclick = () => {
+      if (html.getAttribute("data-theme") === "dark") {
+        html.removeAttribute("data-theme");
+        localStorage.setItem("theme", "light");
+        toggle.textContent = "Dark Mode";
+      } else {
+        html.setAttribute("data-theme", "dark");
+        localStorage.setItem("theme", "dark");
+        toggle.textContent = "Light Mode";
+      }
+    };
+
+    // Scroll animation
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    });
+
+    document.querySelectorAll(".fade-in-on-scroll").forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
