@@ -241,14 +241,9 @@ p {
 }
 
 .project-card {
-  width: 200px;
-  background: var(--nav-bg-color);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-  color: var(--text-color);
+  text-decoration: none; /* remove underline */
+  color: inherit;        /* keep text color */
+  display: block;        /* let it behave like a block */
 }
 
 .project-card:hover {
