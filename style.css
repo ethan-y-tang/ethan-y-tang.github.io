@@ -241,9 +241,16 @@ p {
 }
 
 .project-card {
-  text-decoration: none; /* remove underline */
-  color: inherit;        /* keep text color */
-  display: block;        /* let it behave like a block */
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  width: 280px;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: var(--bg-color);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .project-card:hover {
@@ -253,9 +260,9 @@ p {
 
 .project-image {
   width: 100%;
-  height: 0;
-  padding-bottom: 100%;
+  aspect-ratio: 452 / 234; /* match your image's exact ratio */
   position: relative;
+  background: white;
 }
 
 .project-image img {
@@ -264,7 +271,8 @@ p {
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  padding: 10px;
 }
 
 .project-caption {
@@ -274,6 +282,7 @@ p {
   text-align: center;
   background: var(--bg-color);
 }
+
 
 /* Smooth transition for theme color changes */
 body, .navbar, .project-card, .project-caption, p, a, h1, .gfiles-button, .log-entry {
