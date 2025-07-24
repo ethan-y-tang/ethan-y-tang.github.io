@@ -77,5 +77,21 @@
       </a>
     </div>
     <div id="fake-status-bar"></div>
+    <script>
+    const fakeStatus = document.getElementById("fake-status-bar");
+    const hoverLinks = document.querySelectorAll(".hover-link");
+  
+    hoverLinks.forEach(link => {
+      link.addEventListener("mouseenter", () => {
+        fakeStatus.textContent = link.dataset.fakeUrl;
+        fakeStatus.style.display = "block";
+      });
+  
+      link.addEventListener("mouseleave", () => {
+        fakeStatus.style.display = "none";
+      });
+    });
+  </script>
+
   </body>
 </html>
