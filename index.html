@@ -1,102 +1,657 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#fff">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>blossom.is-a-good.dev</title>
-  <style>
-a { color: var(--link-color); }
-body {
-  --background-color: #fff;
-  --google-blue-600: rgb(26, 115, 232);
-  --google-blue-700: rgb(25, 103, 210);
-  --google-gray-50: rgb(248, 249, 250);
-  --google-gray-300: rgb(218, 220, 224);
-  --google-gray-500: rgb(154, 160, 166);
-  --google-gray-600: rgb(128, 134, 139);
-  --google-gray-700: rgb(95, 99, 104);
-  --google-gray-800: rgb(60, 64, 67);
-  --google-gray-900: rgb(32, 33, 36);
-  --heading-color: var(--google-gray-900);
-  --link-color: rgb(88, 88, 88);
-  --primary-button-fill-color: var(--google-blue-600);
-  --primary-button-fill-color-active: var(--google-blue-700);
-  --primary-button-text-color: #fff;
-  --secondary-button-border-color: var(--google-gray-500);
-  --secondary-button-fill-color: #fff;
-  --secondary-button-hover-border-color: var(--google-gray-600);
-  --secondary-button-hover-fill-color: var(--google-gray-50);
-  --secondary-button-text-color: var(--google-gray-700);
-  --small-link-color: var(--google-gray-700);
-  --text-color: var(--google-gray-700);
-  --error-code-color: var(--google-gray-700);
-  background: var(--background-color);
-  color: var(--text-color);
-  word-wrap: break-word;
-  font-family: 'Segoe UI', Tahoma, sans-serif;
-  font-size: 75%;
-}
-html { -webkit-text-size-adjust: 100%; font-size: 125%; }
-h1 { color: var(--heading-color); font-size: 1.6em; font-weight: normal; line-height: 1.25em; margin-bottom: 16px; margin-top: 0; word-wrap: break-word; }
-a { text-decoration: none; }
-button {
-  border: 0; border-radius: 20px; box-sizing: border-box;
-  color: var(--primary-button-text-color); cursor: pointer;
-  float: right; font-size: .875em; margin: 0; padding: 8px 16px;
-  background: var(--primary-button-fill-color);
-}
-.error-code { color: var(--error-code-color); font-size: .8em; margin-top: 12px; text-transform: uppercase; }
-.interstitial-wrapper { box-sizing: border-box; font-size: 1em; line-height: 1.6em; margin: 14vh auto 0; max-width: 600px; width: 100%; }
-.nav-wrapper { margin-top: 51px; }
-.nav-wrapper::after { clear: both; content: ''; display: table; width: 100%; }
-#suggestions-list a { color: var(--google-blue-600); }
-#suggestions-list p { margin-block-end: 0; }
-#suggestions-list ul { margin-top: 0; }
-.single-suggestion { list-style-type: none; padding-inline-start: 0; }
-.icon { height: 72px; margin: 0 0 40px; width: 72px; background-repeat: no-repeat; background-size: 100%; -webkit-user-select: none; display: inline-block; }
-.icon-generic {
-  content: image-set(
-    url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABIAQMAAABvIyEEAAAABlBMVEUAAABTU1OoaSf/AAAAAXRSTlMAQObYZgAAAENJREFUeF7tzbEJACEQRNGBLeAasBCza2lLEGx0CxFGG9hBMDDxRy/72O9FMnIFapGylsu1fgoBdkXfUHLrQgdfrlJN1BdYBjQQm3UAAAAASUVORK5CYII=) 1x,
-    url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJAAAACQAQMAAADdiHD7AAAABlBMVEUAAABTU1OoaSf/AAAAAXRSTlMAQObYZgAAAFJJREFUeF7t0cENgDAMQ9FwYgxG6WjpaIzCCAxQxVggFuDiCvlLOeRdHR9yzjncHVoq3npu+wQUrUuJHylSTmBaespJyJQoObUeyxDQb3bEm5Au81c0pSCD8HYAAAAASUVORK5CYII=) 2x);
-}
-/* Hide the sub-frame error entirely */
-#sub-frame-error { display: none !important; }
-@media (prefers-color-scheme: dark) {
-  body {
-    --background-color: var(--google-gray-900);
-    --error-code-color: var(--google-gray-500);
-    --heading-color: var(--google-gray-500);
-    --link-color: rgb(138, 180, 248);
-    --primary-button-fill-color: rgb(138, 180, 248);
-    --primary-button-text-color: var(--google-gray-900);
-    --text-color: var(--google-gray-500);
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Math Theorems — A Love Letter to the Weird & Beautiful</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1208;
+    --paper: #f5f0e8;
+    --cream: #ede8d8;
+    --rust: #c0392b;
+    --gold: #b8860b;
+    --teal: #1a5f5f;
+    --faded: #8a7e6a;
+    --margin: #d4c9b0;
   }
-  #suggestions-list a { color: var(--link-color); }
-}
-  </style>
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  /* Paper texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.5;
+  }
+
+  header {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 80px 40px 40px;
+    border-bottom: 2px solid var(--ink);
+    position: relative;
+  }
+
+  .header-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--faded);
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--rust);
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+    color: var(--faded);
+    font-style: italic;
+    max-width: 600px;
+    font-weight: 300;
+    margin-top: 12px;
+  }
+
+  .doodle-line {
+    position: absolute;
+    right: 40px;
+    top: 90px;
+    width: 120px;
+    opacity: 0.2;
+  }
+
+  /* Layout */
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 40px 120px;
+  }
+
+  /* Intro blurb */
+  .intro {
+    padding: 48px 0 32px;
+    border-bottom: 1px dashed var(--margin);
+  }
+
+  .intro p {
+    font-size: 1.15rem;
+    max-width: 680px;
+  }
+
+  .intro p + p { margin-top: 16px; }
+
+  .intro strong { color: var(--teal); }
+
+  /* Theorem cards */
+  .theorem {
+    padding: 48px 0;
+    border-bottom: 1px solid var(--margin);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .theorem.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .theorem-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+
+  .theorem-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--faded);
+    letter-spacing: 0.15em;
+    flex-shrink: 0;
+  }
+
+  .theorem h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .theorem-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--faded);
+    letter-spacing: 0.12em;
+    margin-bottom: 20px;
+  }
+
+  /* Formula block */
+  .formula {
+    background: var(--cream);
+    border-left: 3px solid var(--rust);
+    padding: 16px 24px;
+    margin: 20px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.1rem;
+    color: var(--teal);
+    letter-spacing: 0.05em;
+    line-height: 1.5;
+    display: inline-block;
+    position: relative;
+  }
+
+  .formula::before {
+    content: attr(data-label);
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    background: var(--cream);
+    padding: 0 6px;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--rust);
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  /* Body text */
+  .theorem p {
+    color: #2d2416;
+    max-width: 680px;
+  }
+
+  .theorem p + p { margin-top: 14px; }
+
+  /* Inline callouts */
+  .aside {
+    margin: 20px 0;
+    padding: 14px 20px;
+    background: transparent;
+    border: 1px dashed var(--gold);
+    font-size: 0.9rem;
+    color: var(--faded);
+    font-style: italic;
+    max-width: 600px;
+  }
+
+  /* Tags */
+  .tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border: 1px solid var(--margin);
+    color: var(--faded);
+    border-radius: 2px;
+  }
+
+  .tag.hot { border-color: var(--rust); color: var(--rust); }
+  .tag.cool { border-color: var(--teal); color: var(--teal); }
+
+  /* Highlight text */
+  mark {
+    background: none;
+    color: var(--rust);
+    font-style: italic;
+  }
+
+  /* Section dividers */
+  .section-break {
+    text-align: center;
+    padding: 40px 0 8px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--margin);
+    letter-spacing: 0.3em;
+  }
+
+  /* Big quote */
+  blockquote {
+    border-left: none;
+    padding: 28px 0 28px 32px;
+    border-left: 4px solid var(--ink);
+    margin: 32px 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    line-height: 1.5;
+    max-width: 640px;
+    color: var(--ink);
+  }
+
+  blockquote cite {
+    display: block;
+    font-size: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-style: normal;
+    color: var(--faded);
+    margin-top: 10px;
+    letter-spacing: 0.1em;
+  }
+
+  /* Footer */
+  footer {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 40px 80px;
+    border-top: 2px solid var(--ink);
+  }
+
+  footer p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--faded);
+    letter-spacing: 0.12em;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    header, main, footer { padding-left: 24px; padding-right: 24px; }
+    h1 { font-size: 2.4rem; }
+  }
+
+  /* Animations */
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  header { animation: fadeSlideIn 0.8s ease both; }
+  .intro { animation: fadeSlideIn 0.8s 0.2s ease both; }
+</style>
 </head>
-<body class="neterror">
-  <div id="content">
-    <div id="main-frame-error" class="interstitial-wrapper">
-      <div id="main-content">
-        <div class="icon icon-generic"></div>
-        <div id="main-message">
-          <h1><span>This site can't be reached</span></h1>
-          <p>Check if there is a typo in <span>blossom.is-a-good.dev</span>.</p>
-          <div id="suggestions-list">
-            <p></p>
-            <ul class="single-suggestion">
-              <li>If spelling is correct, <a href="javascript:void(0)" id="diagnose-link">try running Windows Network Diagnostics</a>.</li>
-            </ul>
-          </div>
-          <div class="error-code">DNS_PROBE_FINISHED_NXDOMAIN</div>
-        </div>
-      </div>
-      <div id="buttons" class="nav-wrapper">
-        <div id="control-buttons">
-          <button id="reload-button" onclick="window.location.href='https://blossom.is-a-good.dev/blossom'">Reload</button>
-        </div>
-      </div>
+<body>
+
+<header>
+  <div class="header-tag">Vol. I · An Informal Guide</div>
+  <h1>Theorems That <em>Changed</em><br>Everything</h1>
+  <p class="subtitle">A completely unhinged love letter to the most beautiful ideas in mathematics — written by someone who just wants to talk about them.</p>
+  <svg class="doodle-line" viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 40 Q30 10 60 40 Q90 70 110 40" stroke="#1a1208" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+    <circle cx="60" cy="40" r="3" fill="#c0392b"/>
+    <text x="50" y="18" font-family="serif" font-size="12" fill="#1a1208">e^(iπ)+1=0</text>
+  </svg>
+</header>
+
+<main>
+  <div class="intro">
+    <p>Okay so here's the thing about mathematics — most people think it's just a bunch of rules you memorize and then forget. But that's completely wrong. Math is more like archaeology. People have been digging up these <strong>buried structures of truth</strong> for thousands of years, and some of the things they've found are so strange, so impossibly elegant, that you kind of have to wonder if the universe was designed by someone with a very specific aesthetic.</p>
+    <p>What follows is a tour through some of my favorite theorems. Not a textbook. Not a lecture. Just me yapping at you about things I find deeply, genuinely exciting. <a href="/blossom" style="color:inherit;text-decoration:none;cursor:pointer;">Let's go.</a></p>
+  </div>
+
+  <!-- EULER'S IDENTITY -->
+  <div class="theorem" id="t1">
+    <div class="theorem-header">
+      <span class="theorem-number">01 —</span>
+      <h2>Euler's Identity</h2>
+    </div>
+    <div class="theorem-meta">Leonhard Euler · ~1748 · Number Theory + Complex Analysis</div>
+
+    <div class="formula" data-label="The Formula">e<sup>iπ</sup> + 1 = 0</div>
+
+    <p>Alright, let's start with the one that makes people cry at math competitions. Euler's identity connects five of the most fundamental constants in all of mathematics in one absurdly short equation: <mark>e</mark> (the base of natural logarithms), <mark>i</mark> (the imaginary unit, √−1), <mark>π</mark> (the ratio of a circle's circumference to its diameter), <mark>1</mark> (the multiplicative identity), and <mark>0</mark> (the additive identity).</p>
+
+    <p>These five numbers come from completely different parts of math. e shows up in calculus and growth. π shows up in geometry. i shows up when you try to take square roots of negatives and refuse to give up. The fact that they're connected at all is wild. The fact that they're connected this simply is almost offensive.</p>
+
+    <p>Richard Feynman called it "the most remarkable formula in mathematics." A lot of mathematicians have called it the most beautiful equation ever written. I'm not going to disagree with Feynman.</p>
+
+    <div class="aside">What Euler's identity is really saying: if you travel π units around the unit circle in the complex plane, you end up exactly at −1. The +1 just brings you home to 0. It's a story about rotation, somehow.</div>
+
+    <div class="tags">
+      <span class="tag hot">🔥 Legendary</span>
+      <span class="tag">Complex Numbers</span>
+      <span class="tag">Calculus</span>
     </div>
   </div>
-</body></html>
+
+  <!-- FERMAT'S LITTLE THEOREM -->
+  <div class="theorem" id="t2">
+    <div class="theorem-header">
+      <span class="theorem-number">02 —</span>
+      <h2>Fermat's Little Theorem</h2>
+    </div>
+    <div class="theorem-meta">Pierre de Fermat · 1640 · Number Theory</div>
+
+    <div class="formula" data-label="The Formula">a<sup>p</sup> ≡ a (mod p), where p is prime</div>
+
+    <p>Not to be confused with Fermat's <em>Last</em> Theorem (which is way more dramatic and gets its own entry), this one is Fermat's <em>Little</em> Theorem — and it's honestly incredible how useful something so small can be.</p>
+
+    <p>Here's what it says: take any integer a, and a prime number p. Raise a to the power of p, divide by p, and check the remainder. That remainder will always just be... a. The number you started with. Every single time. Doesn't matter what numbers you pick, as long as p is prime.</p>
+
+    <p>This sounds like a curiosity. It is not. Fermat's Little Theorem is one of the key ideas behind <strong>RSA encryption</strong> — the cryptography that protects basically every secure website on the internet. Your bank? Fermat. Online shopping? Fermat. Embarrassing texts? Also, technically, Fermat.</p>
+
+    <div class="aside">The reason this works has to do with how multiplication behaves modulo a prime. Primes are "clean" in this specific way — they don't have divisors that mess up the arithmetic. The proof is beautiful and involves something called Fermat's necklace argument.</div>
+
+    <div class="tags">
+      <span class="tag cool">Cryptography</span>
+      <span class="tag">Modular Arithmetic</span>
+      <span class="tag">Prime Numbers</span>
+    </div>
+  </div>
+
+  <!-- FERMAT'S LAST THEOREM -->
+  <div class="theorem" id="t3">
+    <div class="theorem-header">
+      <span class="theorem-number">03 —</span>
+      <h2>Fermat's Last Theorem</h2>
+    </div>
+    <div class="theorem-meta">Fermat's conjecture 1637 · Wiles' proof 1995 · Algebraic Number Theory</div>
+
+    <div class="formula" data-label="The Statement">There are NO integers x, y, z such that xⁿ + yⁿ = zⁿ for n > 2</div>
+
+    <p>So Fermat — this 17th century French lawyer who did math as a hobby, which is honestly the most unhinged possible origin story — scribbled a note in the margin of a book. He wrote that he had found a proof that there are no whole number solutions to xⁿ + yⁿ = zⁿ for any exponent greater than 2. Then he wrote: <em>"I have discovered a truly marvelous proof of this, which this margin is too narrow to contain."</em></p>
+
+    <p>And then he died. Without writing down the proof. Which drove mathematicians absolutely insane for <strong>358 years.</strong></p>
+
+    <p>Everyone tried. Euler proved the n=3 case. Others got n=4, n=5, n=7. Computers verified billions of cases. But no general proof. Until 1995, when Andrew Wiles, a British mathematician at Princeton who had been secretly working on it in his attic for seven years like some kind of beautiful math goblin, announced a proof.</p>
+
+    <p>The proof is about 200 pages long and involves elliptic curves, modular forms, and a connection called the Taniyama-Shimura conjecture that nobody even knew was related to Fermat's problem. Whatever Fermat thought he had proved in that margin? He almost certainly didn't have it. The real proof uses math that wouldn't be invented for centuries.</p>
+
+    <div class="tags">
+      <span class="tag hot">358 Years</span>
+      <span class="tag">Elliptic Curves</span>
+      <span class="tag">Number Theory</span>
+    </div>
+  </div>
+
+  <div class="section-break">· · · ·</div>
+
+  <blockquote>
+    "Mathematics is the art of giving the same name to different things."
+    <cite>— Henri Poincaré</cite>
+  </blockquote>
+
+  <!-- GOLDBACH'S CONJECTURE -->
+  <div class="theorem" id="t4">
+    <div class="theorem-header">
+      <span class="theorem-number">04 —</span>
+      <h2>Goldbach's Conjecture</h2>
+    </div>
+    <div class="theorem-meta">Christian Goldbach · 1742 · Number Theory (Still Unproven!!)</div>
+
+    <div class="formula" data-label="The Conjecture">Every even integer > 2 is the sum of two primes</div>
+
+    <p>Here's one that is <mark>still unproven</mark>. As of today. We can't prove it. We've checked it for every even number up to around 4 × 10¹⁸ (that's 4 quintillion), and it holds every single time. But we cannot prove it will always hold.</p>
+
+    <p>4 = 2+2. 6 = 3+3. 8 = 3+5. 100 = 47+53. 1000 = 3+997. It just... works. Every time. But "it works every time we've checked" is not a proof in mathematics — it's just a very strong suspicion.</p>
+
+    <p>Goldbach wrote this in a letter to Euler in 1742 (everybody was writing to Euler about math, Euler was basically the internet of the 1700s). Euler immediately said it seemed obviously true but he couldn't prove it either. That's been the vibe ever since.</p>
+
+    <div class="aside">The closest anyone has gotten is Chen's theorem (1966): every sufficiently large even number is either the sum of two primes, or a prime plus a "semiprime" (product of two primes). That's almost there. Almost.</div>
+
+    <div class="tags">
+      <span class="tag hot">Unsolved</span>
+      <span class="tag">Prime Numbers</span>
+      <span class="tag">Additive Number Theory</span>
+    </div>
+  </div>
+
+  <!-- PYTHAGOREAN THEOREM -->
+  <div class="theorem" id="t5">
+    <div class="theorem-header">
+      <span class="theorem-number">05 —</span>
+      <h2>The Pythagorean Theorem</h2>
+    </div>
+    <div class="theorem-meta">Ancient (~570 BC) · Geometry</div>
+
+    <div class="formula" data-label="The Formula">a² + b² = c²</div>
+
+    <p>Look, I know. You know this one. You've known this one since you were like twelve. But can I just take a moment to say how absolutely <em>insane</em> it is that this is true? Like really sit with it.</p>
+
+    <p>Take any right triangle — literally any one, any size, anywhere in the universe. The square of the hypotenuse is <em>exactly</em> equal to the sum of the squares of the other two sides. Not approximately. Not usually. Exactly. Every time. This is a fact about the shape of space itself.</p>
+
+    <p>There are over 370 known proofs of this theorem. President James Garfield proved it in 1876. Einstein proved it as a child (allegedly). There are proofs using similar triangles, proofs using rearrangement of areas, algebraic proofs, proof by induction. The theorem is so central, so load-bearing, that mathematics keeps re-deriving it as a side effect of other things.</p>
+
+    <p>Also: Pythagorean triples (like 3-4-5 or 5-12-13) were known to Babylonian scribes in 1800 BC, over a thousand years before Pythagoras was born. Math is humble like that.</p>
+
+    <div class="tags">
+      <span class="tag">Geometry</span>
+      <span class="tag">370+ Proofs</span>
+      <span class="tag cool">Foundational</span>
+    </div>
+  </div>
+
+  <!-- CANTOR -->
+  <div class="theorem" id="t6">
+    <div class="theorem-header">
+      <span class="theorem-number">06 —</span>
+      <h2>Cantor's Theorem &amp; Infinite Infinities</h2>
+    </div>
+    <div class="theorem-meta">Georg Cantor · 1891 · Set Theory</div>
+
+    <div class="formula" data-label="The Insight">|ℕ| < |ℝ|  ←  Some infinities are bigger than others</div>
+
+    <p>Okay, this is where things get genuinely weird. Georg Cantor proved that there are different <em>sizes</em> of infinity. Not in a vague philosophical sense. In a precise, mathematical sense. Infinity comes in different sizes and you can compare them.</p>
+
+    <p>The infinity of whole numbers (1, 2, 3, 4...) is a different, strictly <em>smaller</em> infinity than the infinity of real numbers (all the decimals between 0 and 1 alone). You can't match them up one-to-one no matter how clever you are. Cantor proved this with an argument so elegant it's almost theatrical — the "diagonal argument."</p>
+
+    <p>Assume you have a list of all real numbers. Cantor constructs a new number by taking the first digit of the first number, the second digit of the second, and so on — and changing each one. This new number isn't on your list. But you said the list was complete. Contradiction. The reals cannot be listed. They are uncountably infinite.</p>
+
+    <p>Cantor's contemporaries called this "a disease" and "corrupting youth." His colleague Kronecker called him a "corrupter of youth" and a "renegade." Cantor spent time in mental institutions. He died in a sanatorium in 1918. Today he's considered one of the greatest mathematicians in history. Math is a cruel industry.</p>
+
+    <div class="aside">The notation for these infinities: ℵ₀ (aleph-null) for countable infinity, ℵ₁ for the next size up. The question of whether there's an infinity between ℵ₀ and the reals is called the Continuum Hypothesis, and it was proven to be <em>undecidable</em> — neither provable nor disprovable from standard axioms.</div>
+
+    <div class="tags">
+      <span class="tag hot">Mind-Melting</span>
+      <span class="tag">Set Theory</span>
+      <span class="tag">Infinity</span>
+    </div>
+  </div>
+
+  <!-- GÖDEL -->
+  <div class="theorem" id="t7">
+    <div class="theorem-header">
+      <span class="theorem-number">07 —</span>
+      <h2>Gödel's Incompleteness Theorems</h2>
+    </div>
+    <div class="theorem-meta">Kurt Gödel · 1931 · Mathematical Logic</div>
+
+    <div class="formula" data-label="The Punchline">Any consistent formal system strong enough to describe arithmetic contains true statements it cannot prove.</div>
+
+    <p>In 1931, a 25-year-old Kurt Gödel blew up the entire project of mathematics with two theorems. The first: any sufficiently powerful mathematical system that doesn't contradict itself will contain statements that are true but that cannot be proven within the system. The second: such a system cannot prove its own consistency.</p>
+
+    <p>This destroyed a decades-long dream called Hilbert's Program, in which David Hilbert (basically the emperor of early 20th century math) wanted to build a complete, consistent foundation for all of mathematics. Gödel showed that this is <em>literally impossible.</em></p>
+
+    <p>The proof is a kind of mathematical self-reference trick. Gödel constructs a statement that essentially says "this statement is not provable." If it's provable, the system is inconsistent. If it's not provable, then it's true — but you can't prove it. The system is either broken or incomplete. Take your pick.</p>
+
+    <p>This has philosophical implications that people are still arguing about. Does it mean math is "incomplete"? Does it mean truth is bigger than proof? Does it mean we'll always have things we can never know? Yes. Probably. Sorry.</p>
+
+    <div class="tags">
+      <span class="tag hot">Paradigm Shift</span>
+      <span class="tag">Logic</span>
+      <span class="tag">Foundations</span>
+    </div>
+  </div>
+
+  <!-- FOUR COLOR THEOREM -->
+  <div class="theorem" id="t8">
+    <div class="theorem-header">
+      <span class="theorem-number">08 —</span>
+      <h2>The Four Color Theorem</h2>
+    </div>
+    <div class="theorem-meta">Appel &amp; Haken · 1976 · Graph Theory / Topology</div>
+
+    <div class="formula" data-label="The Claim">Any map can be colored with at most 4 colors so no adjacent regions share a color.</div>
+
+    <p>You're coloring a map. You don't want any two touching countries to have the same color. How many colors do you need? The answer is four. Always four. Never more than four. This was conjectured in 1852, and the proof came 124 years later — and it was extremely controversial.</p>
+
+    <p>Why controversial? Because the proof worked by having a computer check 1,936 special cases. It was the first major theorem proven with computer assistance. Many mathematicians at the time refused to accept it. "That's not a proof," they said. "A proof should be something a human can verify."</p>
+
+    <p>Today it's generally accepted, and the computer-assisted approach has become more common. But it still raises interesting questions: what <em>is</em> a proof, really? Is verification by a machine the same as mathematical insight? Does understanding matter, or just correctness?</p>
+
+    <div class="aside">Interestingly, for maps drawn on a torus (a donut shape), you need up to 7 colors. The geometry of the surface changes everything. The four-color result is specific to flat maps and spheres.</div>
+
+    <div class="tags">
+      <span class="tag">Graph Theory</span>
+      <span class="tag cool">First Computer Proof</span>
+      <span class="tag">Topology</span>
+    </div>
+  </div>
+
+  <!-- BAYES' THEOREM -->
+  <div class="theorem" id="t9">
+    <div class="theorem-header">
+      <span class="theorem-number">09 —</span>
+      <h2>Bayes' Theorem</h2>
+    </div>
+    <div class="theorem-meta">Thomas Bayes · ~1763 · Probability Theory</div>
+
+    <div class="formula" data-label="The Formula">P(A|B) = P(B|A) · P(A) / P(B)</div>
+
+    <p>This one is less flashy than most entries on this list but it might be the most practically consequential theorem in mathematics. Bayes' theorem describes how to update your beliefs when you get new evidence. That's it. That's the whole thing. And it's <em>everywhere.</em></p>
+
+    <p>Medical testing, spam filters, AI language models, search engines, self-driving cars, detective work, legal reasoning, scientific inference — all of these either use Bayes' theorem directly or are deeply informed by it. It's the mathematical backbone of rational belief updating.</p>
+
+    <p>The philosophy behind it is called Bayesianism, and it's basically: you start with some belief (your "prior"), you observe evidence, and you update your belief according to how likely that evidence was under each hypothesis. Over time, with enough evidence, even very different starting beliefs converge on the truth.</p>
+
+    <p>Bayes actually published a rough version of this posthumously, in 1763. He apparently wasn't sure it was significant enough to publish while alive. Just a small theorem. Changed science. Whatever.</p>
+
+    <div class="tags">
+      <span class="tag cool">AI &amp; ML</span>
+      <span class="tag">Statistics</span>
+      <span class="tag">Probability</span>
+    </div>
+  </div>
+
+  <!-- PRIME NUMBER THEOREM -->
+  <div class="theorem" id="t10">
+    <div class="theorem-header">
+      <span class="theorem-number">10 —</span>
+      <h2>The Prime Number Theorem</h2>
+    </div>
+    <div class="theorem-meta">Hadamard &amp; de la Vallée Poussin · 1896 · Analytic Number Theory</div>
+
+    <div class="formula" data-label="Asymptotic Form">π(n) ~ n / ln(n)</div>
+
+    <p>Prime numbers seem totally chaotic. 2, 3, 5, 7, 11, 13, 17, 19, 23, 29... There's no obvious pattern, no formula that generates them all, they seem to appear randomly as you go higher. And yet, zoom out far enough, and a beautiful regularity emerges.</p>
+
+    <p>The Prime Number Theorem says that the number of primes up to n is approximately n/ln(n). Not exactly — there's an error term — but as n gets larger, the approximation gets relatively better and better. Primes thin out as numbers get bigger, and they do so according to a precise logarithmic law.</p>
+
+    <p>What's incredible is that this was conjectured by Gauss (at age 15!) and Legendre before it was proven, just by looking at tables of primes and noticing the pattern empirically. It took about 100 years to actually prove it rigorously, using complex analysis, Riemann's zeta function, and tools that feel very far from the simple counting problem where it started.</p>
+
+    <div class="aside">The deeper version of this theorem is connected to the Riemann Hypothesis — arguably the most important unsolved problem in mathematics. Where the zeros of the Riemann zeta function fall determines exactly how "random" prime distribution actually is. It's still unsolved. There's a million dollar prize for it.</div>
+
+    <div class="tags">
+      <span class="tag">Prime Numbers</span>
+      <span class="tag hot">Riemann Hypothesis</span>
+      <span class="tag">Analytic NT</span>
+    </div>
+  </div>
+
+  <div class="section-break">· · · ·</div>
+
+  <blockquote>
+    "God made the integers; all else is the work of man."
+    <cite>— Leopold Kronecker (the same guy who bullied Cantor)</cite>
+  </blockquote>
+
+  <!-- GREEN'S THEOREM -->
+  <div class="theorem" id="t11">
+    <div class="theorem-header">
+      <span class="theorem-number">11 —</span>
+      <h2>Green's Theorem</h2>
+    </div>
+    <div class="theorem-meta">George Green · 1828 · Multivariable Calculus</div>
+
+    <div class="formula" data-label="The Theorem">∮ (P dx + Q dy) = ∬ (∂Q/∂x − ∂P/∂y) dA</div>
+
+    <p>Here's one that's less famous but deserves more love. Green's theorem connects a line integral around the boundary of a region to a double integral over the region's interior. In plain terms: to understand what's happening inside a shape, you only need to look at its boundary.</p>
+
+    <p>This might sound abstract but it's one of the workhorses of physics and engineering. It's the 2D version of a family of theorems (Stokes' theorem, the divergence theorem) that all say the same deep thing: <strong>the behavior of a field on a boundary determines the behavior inside.</strong></p>
+
+    <p>Green himself was a self-taught miller's son from Nottingham with essentially no formal education. He published this in a pamphlet that sold 52 copies. He died before the mathematical world noticed his work. When it was rediscovered, decades later, it turned out to be foundational for electromagnetism, fluid dynamics, and quantum mechanics. 52 copies.</p>
+
+    <div class="tags">
+      <span class="tag">Calculus</span>
+      <span class="tag cool">Physics</span>
+      <span class="tag">52 Copies 💀</span>
+    </div>
+  </div>
+
+  <!-- CENTRAL LIMIT THEOREM -->
+  <div class="theorem" id="t12">
+    <div class="theorem-header">
+      <span class="theorem-number">12 —</span>
+      <h2>The Central Limit Theorem</h2>
+    </div>
+    <div class="theorem-meta">Various · ~1733–1920 · Probability &amp; Statistics</div>
+
+    <div class="formula" data-label="The Miracle">Add up enough random variables → you always get a bell curve</div>
+
+    <p>Take literally any distribution — heights, stock returns, measurement errors, dice rolls, whatever. Sample from it repeatedly, take the average of each sample. Plot those averages. What do you get?</p>
+
+    <p>A bell curve. Always. Regardless of what the original distribution looked like. It could be wildly skewed, lumpy, weird. It doesn't matter. Average enough of them and it normalizes. This is the Central Limit Theorem, and it is the reason statistics works at all.</p>
+
+    <p>This theorem is why we can use normal distributions to model so many things. It's why polling works (with caveats). It's why quality control works. It's why most of frequentist statistics is even coherent. The universe seems to have a strong prior toward bell curves whenever aggregation is involved.</p>
+
+    <div class="aside">There are limits — distributions with infinite variance (like Cauchy distributions) don't obey the CLT. This leads to "fat tails" in financial modeling, which is why "rare" market crashes happen more often than classical models predict. The 2008 financial crisis had some of this flavor.</div>
+
+    <div class="tags">
+      <span class="tag cool">Why Stats Works</span>
+      <span class="tag">Probability</span>
+      <span class="tag">Bell Curve</span>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>A COMPLETELY INFORMAL TOUR OF MATHEMATICS · WRITTEN WITH LOVE AND SOME CHAOS · ALL ERRORS ARE FEATURES</p>
+</footer>
+
+<script>
+  // Intersection observer for scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.theorem').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
